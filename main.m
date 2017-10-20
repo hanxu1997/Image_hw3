@@ -1,6 +1,5 @@
 clc;
 clear;
-
 input_img = imread('16.png');
 
 % fft by matlab
