@@ -2,7 +2,6 @@ function output_img = dft2d( input_img,flag )
     if flag == 1
         input_img = conj(input_img);
     end
-    
     [M,N] = size(input_img);
     output_img = zeros(M,N);
     for v=0:M-1
@@ -16,7 +15,6 @@ function output_img = dft2d( input_img,flag )
         dft_col = dft1d(col_item);
         output_img(:,u+1) = dft_col;
     end
-    output_img = output_img;
     if flag == 1
         output_img = conj(output_img);
     end
