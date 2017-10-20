@@ -3,39 +3,47 @@ clear;
 
 input_img = imread('16.png');
 
-
-j=fft2(input_img);
-[M,N] = size(j);
-move_j = circshift(j,[-M/2,-N/2]);
-I=log(abs(move_j)); % abs得到傅里叶频谱
+% fft by matlab
+fft_result=fft2(input_img);
+[M,N] = size(fft_result);
+move_fftresult = circshift(fft_result,[-M/2,-N/2]);
+fft_spectrum=log(abs(move_fftresult)); % abs得到傅里叶频谱
 figure(2);
 subplot(1,2,1);
-I = scaling(I);
-imshow(I);
+fft_spectrum = scaling(fft_spectrum);
+imwrite(fft_spectrum, '.\fourier_result\matlab_fft_spectrum.png');
+imshow(fft_spectrum);
 colorbar;
 
-j2=dft2d(input_img,0);
-move_j2 = circshift(j2,[-M/2,-N/2]);
-I2=log(abs(move_j2)); % abs得到傅里叶频谱
+% dft2d by my own function
+dft_result=dft2d(input_img,0);
+move_dftresult = circshift(dft_result,[-M/2,-N/2]);
+dft_spectrum=log(abs(move_dftresult)); % abs得到傅里叶频谱
 subplot(1,2,2);
-imshow(scaling(I2));
+dft_spectrum = scaling(dft_spectrum);
+imwrite(dft_spectrum, '.\fourier_result\my_dft_spectrum.png');
+imshow(dft_spectrum);
 colorbar;
 
 
-
-n=ifft2(j);
+% ifft by matlab
+ifft_result=ifft2(fft_result);
 figure(3);
 subplot(1,2,1);
-imshow(scaling(n));
+ifft_result = scaling(ifft_result);
+imwrite(ifft_result, '.\fourier_result\matlab_ifft_result.png');
+imshow(ifft_result);
 colorbar;
 
 
-
-n2 = dft2d(j2,1);
+% idft by my own function
+idft_result = dft2d(dft_result,1);
 figure(3);
 subplot(1,2,2);
-n2= real(n2);
-imshow(scaling(n2));
+idft_result= real(idft_result);
+idft_result = scaling(idft_result);
+imwrite(idft_result, '.\fourier_result\my_idft_result.png');
+imshow(idft_result);
 colorbar;
 
 
