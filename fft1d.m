@@ -23,7 +23,7 @@ function FrequencyData = fft1d(input_vector)
         for g = 1 : 2^(n - u)
             % 最内层循环：合成每个分组需要的蝶形计算次数
             for b = 1 : 2^(u-1)
-                W = exp((-j)*(2*pi*(b-1)*2^(n - u)/M));
+                W = exp((-1j)*(2*pi*(b-1)*2^(n - u)/M));
                 % 奇数项旋转因子W两个重要参数(u,M)
                 % 每次降阶，M的值都要减半，相当于在u阶时，M->M/2^(n-u)
                 % 组内每次蝶形运算，旋转因子指数都+1: *(b-1)
