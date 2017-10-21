@@ -18,7 +18,7 @@ title('matlab fft result');
 colorbar;
 
 % fft2d by my own function
-myfft_result=myFFT2d(input_img,0);
+myfft_result=fft2d(input_img,0);
 [M,N] = paddingSize(input_img);
 move_myfftresult = circshift(myfft_result,[-M/2,-N/2]);
 myfft_spectrum=log(abs(move_myfftresult)); % absµÃµ½¸µÀïÒ¶ÆµÆ×
@@ -43,7 +43,7 @@ colorbar;
 
 
 % imyfft by my own function
-imyfft_result = myFFT2d(myfft_result,1);
+imyfft_result = fft2d(myfft_result,1);
 imyfft_result= real(imyfft_result);
 imyfft_result = scaling(imyfft_result);
 imyfft_result = imyfft_result(1:originalM, 1:originalN);

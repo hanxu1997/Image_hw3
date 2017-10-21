@@ -1,4 +1,4 @@
-function output_img = myFFT2d( input_img,flag )
+function output_img = fft2d( input_img,flag )
     [m,n] = size(input_img);
     % 0扩展到2的n次方
     [M,N] = paddingSize(input_img);
@@ -14,12 +14,12 @@ function output_img = myFFT2d( input_img,flag )
     for v=1:M
         % row operation
         row_item = input_img(v,:);
-        dft_row = myFFT1d(row_item);
+        dft_row = fft1d(row_item);
         output_img(v,:) = dft_row;
     end
     for u=1:N
         col_item = output_img(:,u);
-        dft_col = myFFT1d(col_item);
+        dft_col = fft1d(col_item);
         output_img(:,u) = dft_col;
     end
     if flag == 1

@@ -1,4 +1,4 @@
-function FrequencyData = myFFT1d(input_vector)
+function FrequencyData = fft1d(input_vector)
     % 把输入向量0扩展到2的n次方
     size = length(input_vector);
     n = floor(log2(size));

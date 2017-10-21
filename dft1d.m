@@ -1,6 +1,4 @@
 function output_vector = dft1d( input_vector)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
     M = length(input_vector);
     output_vector = zeros(1,M);
     for u = 0:M-1
