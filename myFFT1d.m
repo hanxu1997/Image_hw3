@@ -15,31 +15,29 @@ function FrequencyData = myFFT1d(input_vector)
         f(i) = f1(index + 1);
     end
 
-    REX = f;
-    IMX = zeros(1,M);
-    i = 0;% T Loop for log2(M)
-    j = 0; %T loop for leach sub-DFT
-    k = 0; %T Loop for each butterfly
-    for i = 0 : n - 1
-        lenNum = 0; 
-        for j = 0 : 2^(n - (i + 1)) - 1
-            for k = 0 : 2^i - 1
-                R1 = REX(lenNum + 2^i + 1) * cos(2*pi*k*2^(n - (i + 1))/M);
-                R2 = IMX(lenNum + 2^i + 1) * sin(2*pi*k*2^(n - (i + 1))/M);
-                T1 = REX(lenNum + 2^i + 1) * sin(2*pi*k*2^(n - (i + 1))/M);
-                T2 = IMX(lenNum + 2^i + 1) * cos(2*pi*k*2^(n - (i + 1))/M);
-                REX(lenNum + 2^i + 1) = REX(lenNum + 1) - R1 - R2;
-                IMX(lenNum + 2^i + 1) = IMX(lenNum + 1)  + T1 - T2;
-                REX(lenNum + 1) = REX(lenNum + 1) + R1 + R2;
-                IMX(lenNum + 1) = IMX(lenNum + 1) - T1 + T2 ;
-
-                lenNum = lenNum + 1;
-               endNum = lenNum + 2^i;    
+    f = double(f);
+    % 最外层循环：共有log2(M)次向上的处理
+    for u = 1 : n
+        pos = 0;
+         % 中间层循环: 每一次向上合成得到的分组个数
+        for g = 1 : 2^(n - u)
+            % 最内层循环：合成每个分组需要的蝶形计算次数
+            for b = 1 : 2^(u-1)
+                W = exp((-j)*(2*pi*(b-1)*2^(n - u)/M));
+                % 奇数项旋转因子W两个重要参数(u,M)
+                % 每次降阶，M的值都要减半，相当于在u阶时，M->M/2^(n-u)
+                % 组内每次蝶形运算，旋转因子指数都+1: *(b-1)
+                even = f(pos + 1);
+                odd = f(pos + 2^(u-1) + 1);
+                f(pos + 1) = even + odd * W;
+                f(pos + 2^(u-1) + 1) = even - odd * W;
+                
+                pos = pos + 1;
+                newpos = pos + 2^(u-1);    
             end
-            lenNum = endNum;
+            pos = newpos; % 转到下一组
         end
     end
-    FrequencyData = REX + IMX;
-
+    FrequencyData = f;
 end
 

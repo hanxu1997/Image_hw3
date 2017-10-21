@@ -17,16 +17,7 @@ colorbar;
 
 % dft2d by my own function
 dft_result=myFFT2d(input_img,0);
-m = floor(log2(M));
-if 2^m < M
-    m = m+1;
-end
-M = 2^m;
-n = floor(log2(N));
-if 2^n < N
-    n = n+1;
-end
-N = 2^n;
+[M,N] = paddingSize(input_img);
 move_dftresult = circshift(dft_result,[-M/2,-N/2]);
 dft_spectrum=log(abs(move_dftresult)); % absµÃµ½¸µÀïÒ¶ÆµÆ×
 subplot(1,2,2);
