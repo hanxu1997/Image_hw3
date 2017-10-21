@@ -12,7 +12,7 @@ output_img1 = filter2d_freq( input_img, filter1);
 figure(2);
 subplot(2,2,2);
 output_img1 = scaling(output_img1);
-imwrite(output_img1, '.\filter_result\3x3_average_filter.png');
+imwrite(output_img1, '.\Filter_result\3x3_average_filter.png');
 imshow(output_img1);
 title('3*3 average filter');
 
@@ -22,7 +22,7 @@ output_img2 = filter2d_freq( input_img, filter2);
 figure(2);
 subplot(2,2,3);
 output_img2 = scaling(output_img2);
-imwrite(output_img2, '.\filter_result\7x7_average_filter.png');
+imwrite(output_img2, '.\Filter_result\7x7_average_filter.png');
 imshow(output_img2);
 title('7*7 average filter');
 
@@ -32,7 +32,7 @@ output_img3 = filter2d_freq( input_img, filter3);
 figure(2);
 subplot(2,2,4);
 output_img3 = scaling(output_img3);
-imwrite(output_img3, '.\filter_result\11x11_average_filter.png');
+imwrite(output_img3, '.\Filter_result\11x11_average_filter.png');
 imshow(output_img3);
 title('11*11 average filter');
 
@@ -49,12 +49,12 @@ title('inputImg');
 subplot(1,3,2);
 imshow(uint8(output_img4));
 title('Laplacian Result');
-imwrite(scaling(uint8(output_img4)), '.\filter_result\Laplacian_filter.png');
+imwrite(scaling(uint8(output_img4)), '.\Filter_result\Laplacian_filter.png');
 % Èñ»¯Ô­Í¼Ïñ
 output_img4 = uint8(output_img4) + input_img;
 subplot(1,3,3);
 output_img4 = scaling(output_img4);
-imwrite(output_img4, '.\filter_result\Laplacian_Sharpen.png');
+imwrite(output_img4, '.\Filter_result\Laplacian_Sharpen.png');
 imshow(output_img4);
 title('laplacian Sharpen');
 

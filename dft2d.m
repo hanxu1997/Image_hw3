@@ -4,16 +4,16 @@ function output_img = dft2d( input_img,flag )
     end
     [M,N] = size(input_img);
     output_img = zeros(M,N);
-    for v=0:M-1
+    for v=1:M
         % row operation
-        row_item = input_img(v+1,:);
+        row_item = input_img(v,:);
         dft_row = dft1d(row_item);
-        output_img(v+1,:) = dft_row;
+        output_img(v,:) = dft_row;
     end
-    for u=0:N-1
-        col_item = output_img(:,u+1);
+    for u=1:N
+        col_item = output_img(:,u);
         dft_col = dft1d(col_item);
-        output_img(:,u+1) = dft_col;
+        output_img(:,u) = dft_col;
     end
     if flag == 1
         output_img = conj(output_img);
