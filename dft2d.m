@@ -11,6 +11,7 @@ function output_img = dft2d( input_img,flag )
         output_img(v,:) = dft_row;
     end
     for u=1:N
+        % col operation
         col_item = output_img(:,u);
         dft_col = dft1d(col_item);
         output_img(:,u) = dft_col;
