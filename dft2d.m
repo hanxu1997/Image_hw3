@@ -16,6 +16,7 @@ function output_img = dft2d( input_img,flag )
         output_img(:,u) = dft_col;
     end
     if flag == 1
+        output_img = output_img / (M*N);
         output_img = conj(output_img);
     end
 end
