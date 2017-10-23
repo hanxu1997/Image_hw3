@@ -38,8 +38,7 @@ input_img = imread('16.png');
 
 
 %À­ÆÕÀ­Ë¹ÂË²¨Æ÷
-% filter4 = [0 -1 0; -1 4 -1;0 -1 0];
-filter4 = [0 1 0; 1 -4 1;0 1 0];
+filter4 = [0 -1 0; -1 4 -1;0 -1 0];
 output_img4 = filter2d_freq( input_img, filter4);
 figure(3);
 % Êä³öÔ­Í¼Ïñ
@@ -48,7 +47,7 @@ imshow(input_img);
 title('inputImg');
 % LaplacianÂË²¨Æ÷ÂË²¨½á¹û
 subplot(1,3,2);
-output_img4 = scaling(output_img4);
+output_img4 = uint8(output_img4);
 imshow(output_img4);
 title('Laplacian Result');
 imwrite(output_img4, '.\Filter_result\Laplacian_filter.png');
