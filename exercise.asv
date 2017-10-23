@@ -21,18 +21,11 @@ H2 = dft2d(padding_h,0);
 
 if H == H2
     figure(1);
-    imshow(abs(H2),[]);
-else
-    figure(3);
-    imshow((abs(H2-H)),[]);
+    imshow(abs(H2));
 end
 
 figure(2);
-subplot(1,2,1);
+sub
 abs(H);
-imshow(log(abs(H)),[]);
-subplot(1,2,2);
-abs(H2);
-imshow(log(abs(H2)),[]);
-
+imshow(abs(H));
 
